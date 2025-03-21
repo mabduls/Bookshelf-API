@@ -82,9 +82,10 @@ const getAllBooksHandler = (request, h) => {
 
   let filteredBooks = books;
 
-  if (queryName) {
-    const nameRegex = new RegExp(queryName, 'gi');
-    filteredBooks = filteredBooks.filter((book) => nameRegex.test(book.name));
+  if (queryName !== undefined) {
+    filteredBooks = filteredBooks.filter((book) =>
+      book.name.toLowerCase().includes(queryName.toLowerCase())
+    );
   }
 
   if (reading !== undefined) {
